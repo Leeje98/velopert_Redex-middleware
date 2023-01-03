@@ -7,11 +7,14 @@ import { Provider } from 'react-redux';
 import rootReducer from './modules';
 import { applyMiddleware, createStore } from 'redux';
 // import myLogger from './middlewares/myLogger';
-import logger from 'redux-logger';
+import logger from 'redux-logger';   // 콘솔창 확인
+import { composeWithDevTools } from 'redux-devtools-extension';  // 개발자도구 -> Redux 창 확인
 
 
-// const store = createStore(rootReducer, applyMiddleware(myLogger, logger));  // 여러개의 미들웨어를 적용 할 수 있다
-const store = createStore(rootReducer, applyMiddleware(logger));
+const store = createStore(
+  rootReducer, 
+  composeWithDevTools(applyMiddleware(logger))
+);  // 여러개의 미들웨어 적용가능
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
