@@ -6,9 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import rootReducer from './modules';
 import { applyMiddleware, createStore } from 'redux';
-import myLogger from './middlewares/myLogger';
+// import myLogger from './middlewares/myLogger';
+import logger from 'redux-logger';
 
-const store = createStore(rootReducer, applyMiddleware(myLogger));
+
+// const store = createStore(rootReducer, applyMiddleware(myLogger, logger));  // 여러개의 미들웨어를 적용 할 수 있다
+const store = createStore(rootReducer, applyMiddleware(logger));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
